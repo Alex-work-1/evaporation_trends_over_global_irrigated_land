@@ -1,0 +1,7 @@
+/data/*/*
+*.Rproj
+
+!/data/mask/**
+!**/.include_folder
+
+**/instruction.txt
