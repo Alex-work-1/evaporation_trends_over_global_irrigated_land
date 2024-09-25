@@ -5,6 +5,7 @@ library(plyr)
 library(dplyr)
 library(lubridate)
 library(reshape2)
+library(pRecipe)
 
 # plotting
 library(ggplot2)
@@ -21,7 +22,7 @@ library(stars)
 PATH_DATA <- 'data/raw/'
 PATH_SAVE <- 'data/processed/'
 PATH_RESULTS <- 'results/figures/'
-
+PATH_GEO <- 'data/geo_data/'
 ## Datasets
 EVAP_GLOBAL_DATASETS <- "gleam" # write now we are focusing on gleam data
 
