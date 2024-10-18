@@ -4,5 +4,8 @@
 !/data/mask/**
 !**/.include_folder
 
+
 **/instruction.txt
 .Rproj.user
+.RData
+.Rhistory
