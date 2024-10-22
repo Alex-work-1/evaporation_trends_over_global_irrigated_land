@@ -78,7 +78,7 @@ for(crop_date in crop_dates){
     
     # convert data table to sf object (vector GIS layer)
     evap_sen_slope_pvalue <- st_as_sf(evap_sen_slope_pvalue, 
-            coords = c("lat", "lon"),
+            coords = c("lon", "lat"),
             crs = 4326 # set coordinate system to WGS 84 (EPSG: 4326).
             )
     
