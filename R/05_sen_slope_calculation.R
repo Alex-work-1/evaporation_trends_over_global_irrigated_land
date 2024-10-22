@@ -26,9 +26,6 @@ evap_data_paths <- list.files(path = PATH_SAVE,
                                                "_cropped_\\S+C\\d.rds")) #select all files which contain _cropped_ and end with .rds
 
 
-
-
-
 # --- Step 4: Loop through categories and date ranges ---
 for(crop_date in crop_dates){
   # extract vector date range (crop_date is a list with a vector of dates inside)
@@ -73,41 +70,61 @@ for(crop_date in crop_dates){
     # Clear the memory by removing unused table
     rm(gleam_datatable)
     
+    # --- Step 9: Select only significant results as vector layer ---
+    # select required p value
+    evap_sen_slope_pvalue <- evap_sen_slope[`P-value` < p_value_max, ]
+    # remove unnecessary column
+    evap_sen_slope_pvalue <- evap_sen_slope_pvalue[, `Sen's slope` := NULL]
     
-    # --- Step 9: Select only significant results ---
-    evap_sen_slope <- evap_sen_slope[`P-value` < p_value_max, ]
+    # convert data table to sf object (vector GIS layer)
+    evap_sen_slope_pvalue <- st_as_sf(evap_sen_slope_pvalue, 
+            coords = c("lat", "lon"),
+            crs = 4326 # set coordinate system to WGS 84 (EPSG: 4326).
+            )
     
     
-    # --- Step 10: Export as a raster file ---
-    # delete the "P-value" column, to avoid multiple bands in the result
-    evap_sen_slope <- evap_sen_slope[, `P-value` := NULL]
     
-    # convert data table into raster object
-    evap_sen_slope <- rasterFromXYZ(evap_sen_slope)
-    
+    # --- Step 10: Export Sen's slope as raster and p value points as vector layers ---
     # define and create save folder
     path_save_sen_slope_dates <- paste0(path_save_sen_slope, 
-                                  crop_date[1], 
-                                  " - ", 
-                                  crop_date[2],
-                                  "/")
+                                        crop_date[1], 
+                                        " - ", 
+                                        crop_date[2],
+                                        "/")
     dir.create(path_save_sen_slope_dates)
     
     
     # extract category name
     category_name <- str_sub(get_file_name(evap_data_path), start = -8)
     
+    # save file name
+    save_file_name <- paste0("sen_slope_",
+                             crop_date[1],
+                             "_",
+                             crop_date[2],
+                             "_",
+                             data_scope,
+                             "_",
+                             category_name)
+    
+    ## p-value export
+    st_write(evap_sen_slope_pvalue, paste0(path_save_sen_slope_dates, 
+                                           save_file_name, 
+                                           ".shp"))
+    
+    ## Sen's slope export
+    # delete the "P-value" column, to avoid multiple bands in the result
+    evap_sen_slope <- evap_sen_slope[, `P-value` := NULL]
+    
+    # convert data table into raster object
+    evap_sen_slope <- rasterFromXYZ(evap_sen_slope)
+    
+    
+    
     # export raster into subfolder in .tif format
     writeRaster(evap_sen_slope,
                 filename=paste0(path_save_sen_slope_dates,
-                                "sen_slope_",
-                                crop_date[1], 
-                                "_", 
-                                crop_date[2],
-                                "_",
-                                data_scope,
-                                "_",
-                                category_name,
+                                save_file_name,
                                 ".tif"),
                 format="GTiff", overwrite=TRUE)
     
