@@ -15,7 +15,7 @@ dir.create(path_save_sen_slope)
 # --- Step 2: define variables ---
 data_scope <- "monthly"
 
-crop_dates <- list(c(1980, 2000), c(2001, 2021), c(1980, 2021)) # c(x, y) - conduct analysis over the list of years from x year to y year (integers only)
+crop_dates <- list(c(1980, 2000), c(2001, 2019), c(1980, 2019)) # c(x, y) - conduct analysis over the list of years from x year to y year (integers only)
 
 p_value_max <- 0.05
 
