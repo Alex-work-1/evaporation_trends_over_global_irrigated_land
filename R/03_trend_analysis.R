@@ -39,22 +39,22 @@ for(evap_data_path in evap_data_paths){
   
   # --- Step 5: Visualize ---
   # Visualization  of a global linear regression analysis
+  # Get the category name
+  category_name <- get_file_name(evap_data_path)
+  category_name <- str_sub(category_name, -2)
   
   ggplot(gleam_datatable_mean, aes(x = Date, y = `Mean evapotranspiration [mm]`)) +
     geom_line() +
     geom_smooth(method = "lm", se = FALSE, color = "red") +
     labs(x = "Date", y = "Mean evapotranspiration [mm]") +
     theme_classic() +
-    labs(title = "Linear regression trend", 
+    labs(title = paste0("Linear regression trend (", category_name,")" ), 
          subtitle = paste0("y = ", 
                            model$coefficients[2], 
                            "x + " , 
                            model$coefficients[1]))
   
   # --- Step 6: Save the results  ---
-  # Get the category name
-  category_name <- get_file_name(evap_data_path)
-  category_name <- str_sub(category_name, -2)
   
   # Get file name
   output_file_name <- paste0("Global linear regression ", category_name)
@@ -101,7 +101,12 @@ for(evap_data_path in evap_data_paths){
     geom_smooth(method = "loess", se = FALSE, color = "red") +
     labs(x = "Date", y = "Mean evapotranspiration [mm]") +
     theme_classic() +
-    labs(title = "LOESS smoothing of global, mean evapotranspiration trend")
+    labs(title = 
+           paste0("LOESS smoothing of global, mean evapotranspiration trend (", 
+                  category_name, 
+                  ")"
+                  ) 
+         )
   
   # --- Step 10: Save the results  ---
   
