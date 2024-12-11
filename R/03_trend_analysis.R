@@ -6,7 +6,7 @@ source("./source/main.R")
 # --- Step 1: Get the data paths ---
 evap_data_paths <- list.files(path = PATH_SAVE, 
                               full.names = TRUE, 
-                              pattern = "yearly_cropped_\\S+C\\d.rds") #select all files which contain _cropped_ and end with .rds
+                              pattern = "yearly_cropped_\\S+C\\d\\S?.rds") #select all files which contain _cropped_ and end with .rds
 
 
 
@@ -41,7 +41,8 @@ for(evap_data_path in evap_data_paths){
   # Visualization  of a global linear regression analysis
   # Get the category name
   category_name <- get_file_name(evap_data_path)
-  category_name <- str_sub(category_name, -2)
+  category_name <- str_split_i(category_name, "_", -1)
+  
   
   ggplot(gleam_datatable_mean, aes(x = Date, y = `Mean evapotranspiration [mm]`)) +
     geom_line() +

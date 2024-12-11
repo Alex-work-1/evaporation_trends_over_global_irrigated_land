@@ -15,7 +15,7 @@ dir.create(path_save_sen_slope)
 # --- Step 2: define variables ---
 data_scope <- "monthly"
 
-crop_dates <- list(c(1980, 2000), c(2001, 2019), c(1980, 2019)) # c(x, y) - conduct analysis over the list of years from x year to y year (integers only)
+crop_dates <- list(c(1980, 2019)) # c(x, y) - conduct analysis over the list of years from x year to y year (integers only)
 
 p_value_max <- 0.05
 
@@ -23,7 +23,7 @@ p_value_max <- 0.05
 evap_data_paths <- list.files(path = PATH_SAVE, 
                               full.names = TRUE, 
                               pattern = paste0(data_scope, 
-                                               "_cropped_\\S+C\\d.rds")) #select all files which contain _cropped_ and end with .rds
+                                               "_cropped_\\S+C\\d\\S?.rds")) #select all files which contain _cropped_ and end with .rds
 
 
 # --- Step 4: Loop through categories and date ranges ---
@@ -95,8 +95,8 @@ for(crop_date in crop_dates){
     
     
     # extract category name
-    category_name <- str_sub(get_file_name(evap_data_path), start = -8)
-    
+    category_name <- str_split_i(get_file_name(evap_data_path), "_", -1)
+
     # save file name
     save_file_name <- paste0("sen_slope_",
                              crop_date[1],
