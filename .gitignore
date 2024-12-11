@@ -1,7 +1,7 @@
 /data/*/*
 *.Rproj
 
-!/data/mask/**
+!/data/masks/hilda_categories/
 !**/.include_folder
 
 
