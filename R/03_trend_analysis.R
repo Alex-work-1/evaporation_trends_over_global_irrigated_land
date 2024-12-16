@@ -99,7 +99,7 @@ ggplot(gleam_dt_joined, aes(x = Date, y = `Mean evapotranspiration [mm]`)) +
   labs(x = "Date", y = "Mean evapotranspiration [mm]") +
   theme_classic() +
   labs(title = "Linear regression trend and LOESS smoothing") +
-  facet_wrap(vars(Class), ncol = 3)
+  facet_wrap(vars(Class), ncol = 3, shrink = FALSE, scales = "free")
 
 # --- Step 8: Save the results  ---
 # Save plot
