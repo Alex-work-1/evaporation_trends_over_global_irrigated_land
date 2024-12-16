@@ -96,7 +96,7 @@ ggplot(gleam_dt_joined, aes(x = Date, y = `Mean evapotranspiration [mm]`)) +
   geom_smooth(method = "loess",
               se = FALSE,
               color = "blue") +
-  labs(x = "Date", y = "Mean evapotranspiration [mm]") +
+  labs(x = "Time (year)", y = "Evapotranspiration (mm / year)") +
   theme_classic() +
   labs(title = "Linear regression trend and LOESS smoothing") +
   facet_wrap(vars(Class), ncol = 3, shrink = FALSE, scales = "free")
