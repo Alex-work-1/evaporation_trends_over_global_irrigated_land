@@ -18,7 +18,7 @@ for(evap_data_path in evap_data_paths){
   # --- Step 3: Load the data into RAM ---
   
   
-  # Open the NetCDF file containing yearly ET data
+  # Open the NetCDF file containing ET data
   evap_data_nc <- nc_open(evap_data_path) 
   evap_data <- ncvar_get(evap_data_nc, "e") 
   
