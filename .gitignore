@@ -3,7 +3,7 @@
 
 !/data/masks/hilda_categories/
 !**/.include_folder
-
+!/data/processed/IPCC_statistics_table.csv
 
 **/instruction.txt
 .Rproj.user

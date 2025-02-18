@@ -7,6 +7,8 @@ source("./source/main.R")
 # --- Step 1: Define necessary variables ---
 gleam_dt_joined <- data.table()
 
+crop_date <- c(1980, 2019) # c(x, y) - conduct analysis over the vector of years from x year to y year (integers only)
+
 
 # --- Step 2: Get the data paths ---
 evap_data_paths <- list.files(path = PATH_SAVE, 
@@ -26,6 +28,10 @@ for (evap_data_path in evap_data_paths) {
   
   # convert text date into date object
   gleam_datatable[, Date := as.Date(Date, format = "%Y-%m-%d")]
+  
+  # constrain data table by the dates of interest
+  gleam_datatable <- gleam_datatable[lubridate::year(Date) >= crop_date[1] 
+                                     & lubridate::year(Date) <= crop_date[2],]
   
   # get the world evapotranspiration mean by date
   gleam_datatable_mean <- gleam_datatable %>%

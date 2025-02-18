@@ -2,10 +2,10 @@ Call:
 loess(formula = `Mean evapotranspiration [mm]` ~ Date_numeric, 
     data = gleam_datatable_mean)
 
-Number of Observations: 42 
-Equivalent Number of Parameters: 4.44 
-Residual Standard Error: 11.02 
-Trace of smoother matrix: 4.86  (exact)
+Number of Observations: 40 
+Equivalent Number of Parameters: 4.34 
+Residual Standard Error: 10.8 
+Trace of smoother matrix: 4.75  (exact)
 
 Control settings:
   span     :  0.75 

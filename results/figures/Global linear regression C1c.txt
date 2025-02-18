@@ -4,16 +4,16 @@ lm(formula = `Mean evapotranspiration [mm]` ~ Date, data = gleam_datatable_mean)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--24.7035  -9.4818  -0.1865   9.2562  21.1299 
+-23.3286  -7.6794  -0.5923   7.9745  23.7345 
 
 Coefficients:
              Estimate Std. Error t value Pr(>|t|)    
-(Intercept) 5.777e+02  4.768e+00 121.168  < 2e-16 ***
-Date        1.988e-03  3.978e-04   4.997 1.19e-05 ***
+(Intercept) 5.813e+02  4.594e+00 126.541  < 2e-16 ***
+Date        1.561e-03  3.971e-04   3.933 0.000345 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 11.41 on 40 degrees of freedom
-Multiple R-squared:  0.3843,	Adjusted R-squared:  0.369 
-F-statistic: 24.97 on 1 and 40 DF,  p-value: 1.195e-05
+Residual standard error: 10.59 on 38 degrees of freedom
+Multiple R-squared:  0.2893,	Adjusted R-squared:  0.2706 
+F-statistic: 15.47 on 1 and 38 DF,  p-value: 0.0003446
 

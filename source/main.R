@@ -8,6 +8,7 @@ library(reshape2)
 library(pRecipe)
 library(tools)
 library(stringr)
+library(tidyr)
 
 # Calculating
 library(modifiedmk)
