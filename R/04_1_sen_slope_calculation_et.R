@@ -21,9 +21,10 @@ p_value_max <- 0.05
 
 # --- Step 3: Load paths ---
 evap_data_paths <- list.files(path = PATH_SAVE, 
-                              full.names = TRUE, 
-                              pattern = paste0(data_scope, 
-                                               "_cropped_\\S+C\\d\\S?.rds")) #select all files which contain _cropped_ and end with .rds
+                         full.names = TRUE, 
+                         pattern = paste0("gleam_e\\S+",
+                                          data_scope, 
+                                          "_cropped_\\S+C\\d\\S?.rds")) #select all files which contain _cropped_ and end with .rds
 
 
 # --- Step 4: Loop through categories and date ranges ---
@@ -40,7 +41,7 @@ for(crop_date in crop_dates){
     # convert to data table format
     gleam_datatable <- as.data.table(gleam_dataframe)
     
-
+    
     # remove unused data frame to save memory
     rm(gleam_dataframe)
     
@@ -63,7 +64,7 @@ for(crop_date in crop_dates){
     # --- Step 8: Apply Mann-Kendall Trend Test over normalized ET data ---
     evap_sen_slope <- gleam_datatable[, as.list(
       tryCatch(
-        mkttest((evap - mean(evap, na.rm = TRUE)) / sd(evap, na.rm = TRUE))[c(2, 5)],
+        mkttest((ET - mean(ET, na.rm = TRUE)) / sd(ET, na.rm = TRUE))[c(2, 5)],
         error = function(e) {print(e)})
     ), .(lon, lat)
     ]
@@ -78,9 +79,9 @@ for(crop_date in crop_dates){
     
     # convert data table to sf object (vector GIS layer)
     evap_sen_slope_pvalue <- st_as_sf(evap_sen_slope_pvalue, 
-            coords = c("lon", "lat"),
-            crs = 4326 # set coordinate system to WGS 84 (EPSG: 4326).
-            )
+                                      coords = c("lon", "lat"),
+                                      crs = 4326 # set coordinate system to WGS 84 (EPSG: 4326).
+    )
     
     
     
@@ -96,7 +97,7 @@ for(crop_date in crop_dates){
     
     # extract category name
     category_name <- str_split_i(get_file_name(evap_data_path), "_", -1)
-
+    
     # save file name
     save_file_name <- paste0("sen_slope_",
                              crop_date[1],
@@ -133,7 +134,11 @@ for(crop_date in crop_dates){
   }
   
 }
-  
 
 
 
+# --- Step 11: Clear RAM ---
+
+
+# Clear session from all objects for memory optimization
+rm(list = ls())

@@ -13,7 +13,7 @@ crop_date <- c(1980, 2019) # c(x, y) - conduct analysis over the vector of years
 # --- Step 2: Get the data paths ---
 evap_data_paths <- list.files(path = PATH_SAVE, 
                               full.names = TRUE, 
-                              pattern = "yearly_cropped_\\S+C\\d\\S?.rds") #select all files which contain _cropped_ and end with .rds
+                              pattern = "gleam_e\\S+yearly_cropped_\\S+C\\d\\S?.rds") #select all files which contain _cropped_ and end with .rds
 
 
 # --- Step 3: preprocess data  ---
@@ -37,7 +37,7 @@ for (evap_data_path in evap_data_paths) {
   gleam_datatable_mean <- gleam_datatable %>%
     na.omit() %>%
     group_by(Date) %>%
-    summarise(`Mean evapotranspiration [mm]` = mean(`evap`)) %>%
+    summarise(`Mean evapotranspiration [mm]` = mean(`ET`)) %>%
     as.data.table() # convert the result to data table for future use
   
   
@@ -121,3 +121,9 @@ ggsave(
 # --- Step 9: Free the total unused RAM space ---
 # call garbage collector to free unused RAM space
 gc()
+
+
+
+# --- Step 10: Clear RAM ---
+# Clear session from all objects for memory optimization
+rm(list = ls())
