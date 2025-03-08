@@ -1,0 +1,19 @@
+
+Call:
+lm(formula = ET ~ Precipitation, data = merged_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.0099 -1.1073 -0.1838  0.8838  4.1127 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    71.2949     8.2112   8.683 1.48e-10 ***
+Precipitation  -0.2744     0.1046  -2.625   0.0124 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.444 on 38 degrees of freedom
+Multiple R-squared:  0.1535,	Adjusted R-squared:  0.1312 
+F-statistic: 6.889 on 1 and 38 DF,  p-value: 0.01243
+
