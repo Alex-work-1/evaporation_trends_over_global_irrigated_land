@@ -1,5 +1,5 @@
 ##
-#Step 5: IPCC statistics
+#Step 6: IPCC statistics
 ##
 
 source("./source/main.R")

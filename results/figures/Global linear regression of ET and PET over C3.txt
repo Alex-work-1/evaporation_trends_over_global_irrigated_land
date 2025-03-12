@@ -3,17 +3,17 @@ Call:
 lm(formula = ET ~ PET, data = merged_data)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--1.65362 -0.40858  0.06859  0.36304  1.94901 
+    Min      1Q  Median      3Q     Max 
+-7.3979 -1.9372  0.5824  2.0803  5.9674 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)   4.4666    10.2857   0.434    0.667    
-PET           0.6518     0.1313   4.965 1.48e-05 ***
+(Intercept)  2.25006    2.20612    1.02    0.308    
+PET          0.68009    0.02812   24.19   <2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.7075 on 38 degrees of freedom
-Multiple R-squared:  0.3935,	Adjusted R-squared:  0.3775 
-F-statistic: 24.66 on 1 and 38 DF,  p-value: 1.479e-05
+Residual standard error: 2.603 on 478 degrees of freedom
+Multiple R-squared:  0.5504,	Adjusted R-squared:  0.5494 
+F-statistic: 585.1 on 1 and 478 DF,  p-value: < 2.2e-16
 

@@ -12,6 +12,7 @@ library(tidyr)
 
 # Calculating
 library(modifiedmk)
+library(minpack.lm)  
 
 # plotting
 library(ggplot2)

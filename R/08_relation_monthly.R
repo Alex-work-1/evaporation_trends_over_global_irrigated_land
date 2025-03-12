@@ -155,12 +155,12 @@ for( class in classes){
   
   # --- Step 10: Visualize  ---
   ## PET
-  ggplot(merged_data, aes(x = ET, y = PET)) +
+  ggplot(merged_data, aes(x = PET, y = ET)) +
     geom_point() +
     geom_smooth(method = "lm",
                 se = FALSE,
                 color = "red") +
-    labs(x = "Actual Evapotranspiration (mm / month)", y = "Potential Evapotranspiration (mm / month)") +
+    labs(x = "Potential Evapotranspiration (mm / month)", y = "Actual Evapotranspiration (mm / month)") +
     theme_classic() +
     labs(title = "Linear regression of ET and PET", subtitle = paste0("R-squared = ", r_sq_PET), caption = paste0("Class: ", class))
   
@@ -173,14 +173,14 @@ for( class in classes){
     create.dir = TRUE
   )
   
-  ggplot(merged_data, aes(x = ET, y = Precipitation)) +
+  ggplot(merged_data, aes(x = Precipitation, y = ET)) +
     geom_point() +
     geom_smooth(method = "lm",
                 se = FALSE,
                 color = "red") +
-    labs(x = "Actual Evapotranspiration (mm / month)", y = "Precipitation (mm / month)") +
+    labs(x = "Precipitation (mm / month)", y = "Actual Evapotranspiration (mm / month)") +
     theme_classic() +
-    labs(title = "Linear regression of ET and PET", subtitle = paste0("R-squared = ", r_sq_precip), caption = paste0("Class: ", class))
+    labs(title = "Linear regression of ET and Precipitation", subtitle = paste0("R-squared = ", r_sq_precip), caption = paste0("Class: ", class))
   
   # Save plot
   ggsave(
